@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishna Tripathi | Cyber Security Enthusiast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #f4f4f9;
+      --text-color: #333;
+      --header-bg: #111827;
+      --card-bg: white;
+      --accent-color: #1e40af;
+      --border-color: #ddd;
+    }
+    
+    [data-theme="dark"] {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --header-bg: #1e293b;
+      --card-bg: #1e293b;
+      --accent-color: #60a5fa;
+      --border-color: #374151;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      line-height: 1.6;
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--header-bg), #374151);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+      animation: float 20s infinite linear;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-100px); }
+    }
+    
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      animation: slideInDown 1s ease;
+    }
+    
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    nav {
+      margin-top: 2rem;
+    }
+    
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav a:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    
+    section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    h2 {
+      color: var(--text-color);
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent-color);
+      animation: expandWidth 1s ease;
+    }
+    
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 50px; }
+    }
+    
+    .card {
+      background: var(--card-bg);
+      margin: 1rem 0;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .skills span, .languages span {
+      display: inline-block;
+      background: var(--accent-color);
+      color: white;
+      margin: 5px;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .skills span:hover, .languages span:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-color), #60a5fa);
+      border-radius: 4px;
+      animation: fillProgress 2s ease;
+    }
+    
+    @keyframes fillProgress {
+      from { width: 0; }
+    }
+    
+    footer {
+      text-align: center;
+      background: var(--header-bg);
+      color: white;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .scroll-to-top.visible {
+      opacity: 1;
+    }
+    
+    .scroll-to-top:hover {
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      nav a {
+        display: block;
+        margin: 0.5rem 0;
+      }
+      
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      section {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-moon" id="theme-icon"></i>
+  </button>
+  
+  <button class="scroll-to-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+<header>
+  <div class="profile-img">
+    <i class="fas fa-user-shield"></i>
+  </div>
+  <h1>Krishna Tripathi</h1>
+  <p>B.Tech in Cyber Security | Python Developer | Open-Source Contributor</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>
+    I’m a Cyber Security undergraduate passionate about building secure, scalable, and innovative tech. With experience in Python development, NLP tools, object detection, and cloud services like AWS & GCP, I actively contribute to open-source and community-led tech initiatives.
+  </p>
+</section>
+
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="card">
+    <h3><i class="fas fa-briefcase"></i> Python Developer Intern @ Cognifyz Technologies (Jun–Jul 2024)</h3>
+    <ul>
+      <li>Built an NLP Text Summarizer using NLTK and regex</li>
+      <li>Improved processing speed by 30%</li>
+    </ul>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 95%;"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-code"></i> Python Developer Intern @ Code Clause (Aug–Sep 2024)</h3>
+    <ul>
+      <li>Automated scripts reducing manual effort by 25%</li>
+      <li>Maintained Python automation tools</li>
+    </ul>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 90%;"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-share-alt"></i> Social Media Intern @ Magniit Technologies (Jun–Jul 2024)</h3>
+    <ul>
+      <li>Executed digital campaigns, boosted engagement by 20%</li>
+      <li>Used A/B testing to refine strategies</li>
+    </ul>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 85%;"></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="card">
+    <h3><i class="fas fa-music"></i> MoodMelody – Emotion-Based Music Player</h3>
+    <p>
+      Created a Python app that detects user emotion via facial recognition and plays suitable music using sentiment analysis.
+    </p>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 100%;"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-eye"></i> YOLOv8 Real-Time Object Detection</h3>
+    <p>
+      Built an optimized object detection system using YOLOv8 and OpenCV, designed for edge devices.
+    </p>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 100%;"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><i class="fas fa-robot"></i> Talking Skeleton Model (In Progress)</h3>
+    <p>
+      Developing a 3D AI character using Blender, Unity, Whisper, ChatGPT, and ElevenLabs for interactive experiences.
+    </p>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 75%;"></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills & Tools</h2>
+  <div class="skills">
+    <span>Python</span><span>C/C++</span><span>Go</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+    <span>Flask</span><span>GCP</span><span>AWS</span><span>Linux</span><span>OpenCV</span><span>TensorFlow</span>
+    <span>Blender</span><span>Unity</span><span>Git</span><span>GitHub</span><span>SMM</span>
+  </div>
+</section>
+
+<section>
+  <h2>Languages</h2>
+  <div class="languages">
+    <span>Python (Native)</span><span>C (Proficient)</span><span>C++ (Advanced)</span>
+    <span>Go (Intermediate)</span><span>JavaScript (Proficient)</span>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-links">
+    <a href="mailto:krishnatripathi07042005@gmail.com">
+      <i class="fas fa-envelope"></i> Email
+    </a>
+    <a href="tel:+916307813602">
+      <i class="fas fa-phone"></i> Call
+    </a>
+    <a href="https://github.com/Krishna-Tripathi78" target="_blank">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://linkedin.com/in/krishna-tripathi-9aa494303/" target="_blank">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Krishna Tripathi. All rights reserved.
+</footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        themeIcon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Load saved theme
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      if (savedTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fas fa-sun';
+      }
+      
+      // Show/hide scroll to top button
+      const scrollButton = document.querySelector('.scroll-to-top');
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+          scrollButton.classList.add('visible');
+        } else {
+          scrollButton.classList.remove('visible');
+        }
+      });
+      
+      // Animate sections on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      });
+      
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
